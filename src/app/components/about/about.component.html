@@ -1,0 +1,95 @@
+<div class="container m-3">
+      <h1>Enroll with us!</h1>
+          <!-- Modal -->
+          <div class="alert alert-danger" *ngIf="errorMsg">
+            {{errorMsg}}
+          </div>
+
+      <!-- using a template reference variable on the form #useForm="ngForm" -->
+      <form #useForm="ngForm"  *ngIf="!submitted" class="align-items-center" (ngSubmit)="onSubmit()" novalidate>
+            <h1 class="text-center">Validate Your Form</h1>
+            <!-- Name input validated -->
+            <div class="form-group">
+                  <label for="name">Name</label>
+                  <!-- Used property binding[] to bind the UserModels -->
+                  <input type="text" class="form-control" required #name ="ngModel" [class.is-invalid]="name.invalid &&name.touched" name="userName"[(ngModel)]="userModel.name">
+                  <small  class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required*</small>
+            </div>
+
+            <!-- Validate Email input -->
+            <div class="form-group">
+                  <label for="email">Email</label>
+                  
+                  <input type="email" class="form-control" required #email ="ngModel" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+                  [class.is-invalid] ="email.invalid &&name.touched" name="Email" [(ngModel)]="userModel.email">
+
+                  <!-- <small class="text-danger" [class.d-none]="email.valid||email.touched" >Email is invalid*</small> -->
+
+                  <!-- Specified Email errors -->
+                  <div *ngIf="email.errors &&(email.valid||email.touched)">
+                        <small class="text-danger" *ngIf="email.errors['required']">Email is required*</small>
+                        <small class="text-danger" *ngIf="email.errors['pattern']">Email must follow valid pattern*</small>
+                        <small class="text-danger" *ngIf="email.errors['minlength']">Email must have 10 character*</small>
+                        <small class="text-danger" *ngIf="email.errors['maxlength']">Email cannot have more than 100 characters*</small>
+                  </div>
+            </div>
+
+            <!-- Phone input valiated -->
+            <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input required type="tel" class="form-group"  required #phone ="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid &&name.touched" name="Phone" [(ngModel)]="userModel.phone">
+                  <!-- <small class="text-danger" [class.d-none]="phone.valid||phone.touched">Phone number is requred  must be 10 digits*</small> -->
+
+                  <!-- Use this format to dispaly a specific error message -->
+                  <div *ngIf="phone.errors && (phone.valid||phone.touched)"> 
+                        <small class="text-danger" *ngIf="phone.errors['required']">Phone number is requred*</small>
+                        <small class="text-danger" *ngIf="phone.errors['pattern']">Phone number must be 10 degits*</small>
+                  </div>
+            </div>
+            
+            <!-- Selection for dropdown-->
+            <div class="form-group">
+                  <select (blur)="validateTopic(topic.value)" (change)="validateTopic(topic.value)"#topic="ngModel"  [class.is-invalid]="topicHasError && topic.touched" value="" [ngModel]="userModel.topic">
+                        <option selected>Interested In...</option>
+                        <option *ngFor="let topic of topics"> {{ topic }} </option>
+                  </select>
+                  <small class="tex-danger" [class.d-none]="!topicHasError||topic.untouched">Please choose a topic*</small>
+            </div>
+
+            <!-- Select timeslot -->
+            <div class="mb-3 justify-content-between mr-3">
+                  <label>Time Preference</label>
+                  <div class="form-check">
+                        <input class="form-check-input" required #name ="ngModel" type="radio" name="timePreference" value="morning" [(ngModel)]="userModel.timePreference">
+                        <label class="form-check-label">Morning (9AM -12PM)</label>
+                  </div>
+                  <div class="form-check mr-3">
+                        <input class="form-check-input"type="radio" required="name.invalid &&name.touched" name="timePreference" value="evening"[(ngModel)]="userModel.timePreference">
+                        <label class="form-check-label">Evening (5Pm - 8PM)</label>
+                  </div>
+            </div>
+            <!-- Check-box -->
+            <div class="form-check mb-3">
+                  <input class="form-check-input" name="subscribe" required #name ="ngModel"type="checkbox" [(ngModel)]="userModel.subscribe">
+                  <label class="form-check-label">Send me Promotional Offers</label>
+            </div>
+            <button [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit">Submit Form</button>
+      </form>
+</div>
+
+<div>
+      <!-- 
+
+            For one to submit form:
+            -- cretae an ngSubmit method pass in onSubmit event that will be fired on the click of a button
+            -- Define the onSubmit event in the component.ts ie:
+                              onSubmit(){
+                                    console.log('Submit Form Success')
+                              }
+            -- cretae a service where the form is to be submitted
+            -- Import HttpClientModule in the created service then inject it the constructor
+            -- Import the HTTPClientModule in the app.component.ts
+            -- Add it to the imports array
+            -- Since I am doing this in the about.component.html, I need to import the EnrollmentService that i created in the about.component.ts and inject it in the constructor function
+       -->
+</div>

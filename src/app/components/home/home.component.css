@@ -1,0 +1,96 @@
+    #header{
+        display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+        padding: 20px 80px;
+        background-color: #ffffff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    
+        /* Sticky navbar  */
+        position: sticky;
+        z-index: 999;
+        top: 0;
+        left: 0;
+    }
+    
+    /* STYLING THE NAVBAR LINKS (ul/l)  Aligning Items in one row */
+    #navbar{
+        /* justify-content: center; */
+        display: flex;
+        align-items: start;
+        margin-left: -20px;
+    }
+    
+    /* Removes list styles i.e bullets */
+    #navbar li{
+        list-style: none;
+        padding: 20px;
+        position: relative;
+    }
+    /* Removes the underlines of the links by removing decoration, adds some font-size and color of the text  */
+    #navbar li a{
+        text-decoration: none;
+        font-size: 16px;
+        color: #1a1a1a;
+        font-weight: 600;
+        transition: 0.3s ease;       /* Adding some smoothness on hover(transition)  */
+    }
+    
+    /* Adding hoover effects on the navlinks(a tags)  */
+    #navbar li a:hover,
+    #navbar li a.active{
+        color: #088178;
+    }
+    #navbar li a.active::after,
+    #navbar li a:hover::after /* Adding the underlines everytime one hovers on the links */ {
+        content: "";
+        width: 30%;
+        height: 2px;
+        background: #088178;
+        position: absolute;
+        bottom: 2px;
+        left: 20px;
+    }
+    .drop{
+    opacity: 0.75;
+    font-size: 0.75em;
+    }
+
+
+#hero{
+      background-image: url('/assets/images//hero4.png');
+      height: 90vh;
+      width: 100%;
+      background-position: 25% 0;
+      background-size: cover;
+  
+      /* Aligning the text in the hero section in the center position */
+      padding: 0 80px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+  }
+  #hero h4{
+      padding-bottom: 15px;
+  }
+  #hero h1{
+      color: #088178;
+  }
+  
+  /* Styling the button */
+  #hero button{
+      background-image: url("/assets/images/button.png");
+      background-color: transparent;
+      color: #088178;
+      border: 0;
+      padding: 14px 80px 14px 65px;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+  }
+  #hero button:hover{
+      border-radius: 10px;
+  }
+  

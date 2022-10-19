@@ -1,0 +1,19 @@
+[
+
+      {
+            "id": 1,"name": "Luke Skywalker","department": "Scram","departmentId": 1
+    
+          },
+          {
+            "id": 2,"name": "John Smith","department": "IT","departmentId": 2
+          },
+          {
+            "id": 4,"name": "Bradly","department": "Project O wner","departmentId": 3
+          },
+          {
+            "id": 5,"name": "Jane","department": "Developer","departmentId": 4
+          },
+          {
+            "id": 6,"name": "Jeo","department": "Accounts","departmentId": 5 
+          }
+]
